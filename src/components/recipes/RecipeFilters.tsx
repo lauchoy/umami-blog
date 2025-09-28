@@ -291,7 +291,7 @@ export default function RecipeFilters() {
           <div className="px-2">
             <Slider
               value={timeRange}
-              onValueChange={setTimeRange}
+              onValueChange={(value) => setTimeRange(value as [number, number])}
               max={180}
               min={0}
               step={5}
@@ -314,7 +314,7 @@ export default function RecipeFilters() {
           <div className="px-2">
             <Slider
               value={servings}
-              onValueChange={setServings}
+              onValueChange={(value) => setServings(value as [number, number])}
               max={12}
               min={1}
               step={1}

@@ -45,7 +45,7 @@ export async function getRecipesByCuisine(cuisine: string): Promise<Recipe[]> {
 
 export async function getRecipesByDietaryTag(tag: string): Promise<Recipe[]> {
   try {
-    return await sanityClient.fetch(recipesByDietaryTagQuery, { tag })
+    return await sanityClient.fetch(recipesByDietaryTagQuery, { tag } as any)
   } catch (error) {
     console.error('Error fetching recipes by dietary tag:', error)
     throw new Error('Failed to fetch recipes by dietary tag')

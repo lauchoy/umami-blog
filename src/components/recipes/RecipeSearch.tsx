@@ -46,13 +46,13 @@ export default function RecipeSearch() {
   useEffect(() => {
     if (debouncedQuery.length > 1) {
       // Mock suggestions - in a real app, this would come from your API
-      const mockSuggestions: SearchSuggestion[] = [
+      const mockSuggestions: SearchSuggestion[] = ([
         { type: 'recipe', value: 'Chicken Tikka Masala', count: 5 },
         { type: 'ingredient', value: 'chicken breast', count: 234 },
         { type: 'cuisine', value: 'Indian', count: 89 },
         { type: 'recipe', value: 'Chicken Parmesan', count: 12 },
         { type: 'ingredient', value: 'chicken thighs', count: 156 },
-      ].filter(s => s.value.toLowerCase().includes(debouncedQuery.toLowerCase()))
+      ] as SearchSuggestion[]).filter(s => s.value.toLowerCase().includes(debouncedQuery.toLowerCase()))
 
       setSuggestions(mockSuggestions)
       setShowSuggestions(true)

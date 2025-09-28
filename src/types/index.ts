@@ -10,6 +10,19 @@ export interface User {
   updatedAt: Date
 }
 
+export interface UserProfile {
+  displayName: string
+  email: string
+  bio: string
+  location: string
+  dietaryPreferences: string[]
+  cookingLevel: string
+  favoritesCuisines: string[]
+  photoURL?: string
+  createdAt?: Date
+  updatedAt?: Date
+}
+
 export interface UserPreferences {
   cuisines: string[]
   dietaryRestrictions: DietaryRestriction[]

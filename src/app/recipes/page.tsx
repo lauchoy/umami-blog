@@ -33,11 +33,12 @@ function RecipeGridSkeleton() {
   )
 }
 
-export default function RecipesPage({
+export default async function RecipesPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
+  const resolvedSearchParams = await searchParams
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
@@ -73,7 +74,7 @@ export default function RecipesPage({
 
             {/* Recipe Grid */}
             <Suspense fallback={<RecipeGridSkeleton />}>
-              <RecipeGrid searchParams={searchParams} />
+              <RecipeGrid searchParams={resolvedSearchParams} />
             </Suspense>
           </div>
         </div>

@@ -15,7 +15,7 @@ import {
   DocumentData,
 } from 'firebase/firestore'
 import { db } from './config'
-import { ShoppingList, ShoppingItem, Review, CookingSession, PaginatedResponse, UserPreferences } from '@/types'
+import { ShoppingList, Review, CookingSession, PaginatedResponse, UserPreferences, UserProfile } from '@/types'
 
 // Shopping Lists
 export async function createShoppingList(userId: string, name: string): Promise<string> {
@@ -239,6 +239,47 @@ export async function createUserPreferences(userId: string, preferences: UserPre
     })
   } catch (error) {
     throw new Error(`Failed to create user preferences: ${error instanceof Error ? error.message : 'Unknown error'}`)
+  }
+}
+
+// User Profiles
+export async function getUserProfile(userId: string): Promise<UserProfile | null> {
+  try {
+    const docRef = doc(db, 'user-profiles', userId)
+    const docSnap = await getDoc(docRef)
+
+    if (docSnap.exists()) {
+      return docSnap.data() as UserProfile
+    }
+
+    return null
+  } catch (error) {
+    throw new Error(`Failed to get user profile: ${error instanceof Error ? error.message : 'Unknown error'}`)
+  }
+}
+
+export async function updateUserProfile(userId: string, profile: Partial<UserProfile>): Promise<void> {
+  try {
+    const docRef = doc(db, 'user-profiles', userId)
+    await updateDoc(docRef, {
+      ...profile,
+      updatedAt: new Date(),
+    })
+  } catch (error) {
+    throw new Error(`Failed to update user profile: ${error instanceof Error ? error.message : 'Unknown error'}`)
+  }
+}
+
+export async function createUserProfile(userId: string, profile: UserProfile): Promise<void> {
+  try {
+    const docRef = doc(db, 'user-profiles', userId)
+    await updateDoc(docRef, {
+      ...profile,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    })
+  } catch (error) {
+    throw new Error(`Failed to create user profile: ${error instanceof Error ? error.message : 'Unknown error'}`)
   }
 }
 

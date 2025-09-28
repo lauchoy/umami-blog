@@ -32,7 +32,6 @@ import {
   CogIcon,
   ArrowRightOnRectangleIcon,
 } from '@heroicons/react/24/outline'
-import { cn } from '@/lib/utils'
 
 const cuisines = [
   'Italian',
@@ -53,12 +52,11 @@ const categories = [
 ]
 
 export default function Header() {
-  const [isSearchFocused, setIsSearchFocused] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
 
   // Mock user state - in real app, this would come from auth context
   const isAuthenticated = false
-  const user: { avatar?: string; displayName?: string } | null = null
+  const user: { avatar?: string; displayName?: string; email?: string } | null = null
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -173,8 +171,6 @@ export default function Header() {
                 className="pl-8"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setIsSearchFocused(false)}
               />
             </div>
           </div>
@@ -190,20 +186,22 @@ export default function Header() {
                 </Button>
 
                 {/* Shopping List */}
-                <Button variant="ghost" size="icon" className="hidden sm:flex relative">
-                  <ShoppingCartIcon className="h-5 w-5" />
-                  <Badge className="absolute -right-1 -top-1 h-5 w-5 rounded-full p-0 text-xs">
-                    3
-                  </Badge>
-                  <span className="sr-only">Shopping list</span>
-                </Button>
+                <Link href="/shopping-lists">
+                  <Button variant="ghost" size="icon" className="hidden sm:flex relative">
+                    <ShoppingCartIcon className="h-5 w-5" />
+                    <Badge className="absolute -right-1 -top-1 h-5 w-5 rounded-full p-0 text-xs">
+                      3
+                    </Badge>
+                    <span className="sr-only">Shopping list</span>
+                  </Button>
+                </Link>
 
                 {/* User Menu */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                       <Avatar className="h-8 w-8">
-                        <AvatarImage src={user?.avatar} alt={user?.displayName || ''} />
+                        <AvatarImage src={undefined} alt={''} />
                         <AvatarFallback>
                           <UserIcon className="h-4 w-4" />
                         </AvatarFallback>
@@ -214,25 +212,29 @@ export default function Header() {
                     <DropdownMenuLabel className="font-normal">
                       <div className="flex flex-col space-y-1">
                         <p className="text-sm font-medium leading-none">
-                          {user?.displayName}
+                          Guest User
                         </p>
                         <p className="text-xs leading-none text-muted-foreground">
-                          {user?.email}
+                          guest@example.com
                         </p>
                       </div>
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>
-                      <UserIcon className="mr-2 h-4 w-4" />
-                      <span>Profile</span>
+                    <DropdownMenuItem asChild>
+                      <Link href="/profile">
+                        <UserIcon className="mr-2 h-4 w-4" />
+                        <span>Profile</span>
+                      </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                       <HeartIcon className="mr-2 h-4 w-4" />
                       <span>Saved Recipes</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <ShoppingCartIcon className="mr-2 h-4 w-4" />
-                      <span>Shopping Lists</span>
+                    <DropdownMenuItem asChild>
+                      <Link href="/shopping-lists">
+                        <ShoppingCartIcon className="mr-2 h-4 w-4" />
+                        <span>Shopping Lists</span>
+                      </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                       <CogIcon className="mr-2 h-4 w-4" />

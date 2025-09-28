@@ -117,9 +117,10 @@ export function onAuthStateChange(callback: (user: FirebaseUser | null) => void)
 function getDefaultPreferences(): UserPreferences {
   return {
     dietaryRestrictions: [],
-    cuisinePreferences: [],
+    cuisines: [],
     skillLevel: 'beginner',
-    cookingTime: '30min',
+    cookingTime: 'medium',
+    favoriteIngredients: [],
     allergies: [],
     dislikedIngredients: [],
   }
