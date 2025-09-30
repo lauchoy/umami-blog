@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import { ClockIcon, UsersIcon, StarIcon } from "@heroicons/react/24/outline"
 
@@ -57,90 +56,153 @@ const categories = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-orange-500 to-red-600 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Discover Your Perfect Recipe
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Personalized culinary experiences tailored to your taste, skill level, and dietary preferences
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100">
-              Start Cooking
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600">
-              Browse Recipes
-            </Button>
+    <div className="min-h-screen bg-brand-white">
+      {/* Hero Section - Oatly Style: Asymmetric, Bold Typography */}
+      <section className="relative bg-brand-black text-brand-white py-20 overflow-hidden">
+        <div className="container mx-auto px-4">
+          {/* Asymmetric grid layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left side - Massive bold headline */}
+            <div className="lg:col-span-7 text-left">
+              <h1 className="font-headline font-black text-6xl md:text-8xl lg:text-9xl leading-none mb-6 tracking-tighter">
+                COOK<br/>
+                BOLD.
+              </h1>
+              <p className="font-body text-sm md:text-base max-w-md mb-8 tracking-wide">
+                Personalized recipes for brave home cooks. No boring meals.
+                Just honest food that makes you say &ldquo;WOW HOW COOL!&rdquo;
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  size="lg"
+                  className="bg-brand-white text-brand-black hover:bg-brand-cream font-body font-bold border-4 border-brand-black shadow-oatly-button hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+                >
+                  START COOKING →
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-4 border-brand-white text-brand-white hover:bg-brand-white hover:text-brand-black font-body font-bold shadow-oatly-button hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+                >
+                  BROWSE RECIPES
+                </Button>
+              </div>
+            </div>
+
+            {/* Right side - Playful badge/callout */}
+            <div className="lg:col-span-5 flex justify-center lg:justify-end">
+              <div className="relative">
+                <div className="bg-pastel-yellow p-8 rounded-full w-64 h-64 flex items-center justify-center border-4 border-brand-black rotate-6 shadow-oatly-bold">
+                  <p className="font-handwritten text-3xl text-center text-brand-black transform -rotate-6">
+                    1000+ Bold Recipes!
+                  </p>
+                </div>
+                <div className="absolute -bottom-4 -right-4 bg-pastel-pink p-4 rounded-lg border-3 border-brand-black rotate-12 shadow-oatly-card">
+                  <p className="font-body text-xs font-bold">NEW!</p>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Graph paper grid background */}
+        <div className="absolute inset-0 opacity-5 pointer-events-none"
+             style={{
+               backgroundImage: 'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)',
+               backgroundSize: '20px 20px'
+             }}>
         </div>
       </section>
 
-      {/* Featured Recipes */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Featured Recipes
+      {/* Featured Recipes - Oatly Style */}
+      <section className="py-16 bg-brand-cream relative">
+        {/* Graph paper background */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none"
+             style={{
+               backgroundImage: 'linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)',
+               backgroundSize: '20px 20px'
+             }}>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Asymmetric header */}
+          <div className="text-left mb-12 max-w-2xl">
+            <h2 className="font-headline font-black text-5xl md:text-7xl text-brand-black mb-4 leading-none">
+              FEATURED<br/>RECIPES
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Hand-picked recipes from our community of talented chefs and home cooks
+            <p className="font-body text-sm md:text-base text-brand-black">
+              Bold flavors. Brave techniques. Zero boring meals.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredRecipes.map((recipe) => (
-              <Card key={recipe.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-video bg-gray-200">
+            {featuredRecipes.map((recipe, index) => (
+              <div
+                key={recipe.id}
+                className="bg-brand-black border-4 border-brand-black shadow-oatly-card hover:translate-x-2 hover:translate-y-2 hover:shadow-none transition-all cursor-pointer group"
+              >
+                <div className="aspect-video bg-brand-white relative overflow-hidden border-b-4 border-brand-black">
                   <img
                     src={recipe.image}
                     alt={recipe.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                   />
+                  {/* Playful badge */}
+                  <div className={`absolute top-3 right-3 ${index === 0 ? 'bg-pastel-pink' : index === 1 ? 'bg-pastel-blue' : 'bg-pastel-yellow'} px-3 py-1 border-2 border-brand-black rotate-3`}>
+                    <span className="font-body text-xs font-bold uppercase">{recipe.difficulty}</span>
+                  </div>
                 </div>
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-1">
-                      <StarIcon className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span className="text-sm font-medium">{recipe.rating}</span>
-                      <span className="text-sm text-gray-500">({recipe.reviewCount})</span>
-                    </div>
-                    <Badge variant="secondary" className="capitalize">
-                      {recipe.difficulty}
-                    </Badge>
-                  </div>
-                  <CardTitle className="text-xl">{recipe.title}</CardTitle>
-                  <CardDescription className="line-clamp-2">
+                {/* Card content with bold contrast */}
+                <div className="p-6 bg-brand-black text-brand-white">
+                  {/* Title - Bold headline font */}
+                  <h3 className="font-headline font-black text-2xl md:text-3xl mb-3 leading-tight">
+                    {recipe.title.toUpperCase()}
+                  </h3>
+
+                  {/* Description - Monospace */}
+                  <p className="font-body text-xs md:text-sm mb-4 leading-relaxed">
                     {recipe.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
+                  </p>
+
+                  {/* Stats with bold icons */}
+                  <div className="flex items-center gap-4 mb-4 font-body text-xs">
                     <div className="flex items-center gap-1">
-                      <ClockIcon className="h-4 w-4" />
-                      <span>{recipe.prepTime + recipe.cookTime} min</span>
+                      <ClockIcon className="h-5 w-5" />
+                      <span className="font-bold">{recipe.prepTime + recipe.cookTime} MIN</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <UsersIcon className="h-4 w-4" />
-                      <span>{recipe.servings} servings</span>
+                      <UsersIcon className="h-5 w-5" />
+                      <span className="font-bold">{recipe.servings} SERVINGS</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <StarIcon className="h-5 w-5 fill-current" />
+                      <span className="font-bold">{recipe.rating}</span>
                     </div>
                   </div>
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {recipe.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-xs">
+
+                  {/* Tags with colorful borders */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {recipe.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tag}
+                        className={`${tagIndex === 0 ? 'bg-pastel-mint' : tagIndex === 1 ? 'bg-pastel-peach' : 'bg-pastel-lavender'} text-brand-black px-2 py-1 text-xs font-body font-bold uppercase border-2 border-brand-white`}
+                      >
                         {tag}
-                      </Badge>
+                      </span>
                     ))}
                   </div>
-                  <Button asChild className="w-full">
+
+                  {/* CTA Button */}
+                  <Button
+                    asChild
+                    className="w-full bg-brand-white text-brand-black hover:bg-pastel-yellow font-body font-bold border-3 border-brand-white shadow-oatly-button hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+                  >
                     <Link href={`/recipes/${recipe.id}`}>
-                      View Recipe
+                      VIEW RECIPE →
                     </Link>
                   </Button>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
 

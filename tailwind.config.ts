@@ -8,61 +8,62 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // Custom color palette for culinary platform
+      // Oatly-inspired design system colors
       colors: {
-        // Primary brand colors
+        // Core brand colors - High contrast black/white
+        brand: {
+          black: '#000000',
+          white: '#FFFFFF',
+          cream: '#F5F1E8',
+          beige: '#E8E4D9',
+        },
+        // Soft pastel accents (used sparingly)
+        pastel: {
+          pink: '#FFD6E8',
+          blue: '#D6E8FF',
+          yellow: '#FFF4D6',
+          peach: '#FFE4D6',
+          lavender: '#E8D6FF',
+          mint: '#D6FFE8',
+        },
+        // Texture overlays
+        texture: {
+          'light-grid': '#F0F0F0',
+          'dark-overlay': 'rgba(0, 0, 0, 0.05)',
+          'vintage': '#2A2A2A',
+        },
+        // Keep umami colors for backwards compatibility
         umami: {
           50: '#fef7ee',
           100: '#fdeed6',
           200: '#fad9ad',
           300: '#f7c079',
           400: '#f39c43',
-          500: '#f0801e', // Primary
+          500: '#f0801e',
           600: '#e16314',
           700: '#bb4a13',
           800: '#953a17',
           900: '#783115',
           950: '#411709',
         },
-        // Secondary accent colors
-        sage: {
-          50: '#f6f7f6',
-          100: '#e3e8e3',
-          200: '#c7d2c7',
-          300: '#a1b4a1',
-          400: '#799479',
-          500: '#5a7a5a', // Secondary
-          600: '#476247',
-          700: '#3b503b',
-          800: '#314031',
-          900: '#2a352a',
-          950: '#151c15',
-        },
-        // Neutral colors
-        cream: {
-          50: '#fefcf9',
-          100: '#fef7ee',
-          200: '#fdeed6',
-          300: '#fbe0b8',
-          400: '#f8cd8c',
-          500: '#f4b860',
-          600: '#eda545',
-          700: '#d8903a',
-          800: '#b0732e',
-          900: '#8f5f28',
-          950: '#4e3013',
-        },
-        // Status colors
+        // Status colors (adjusted for Oatly style)
         success: '#10b981',
         warning: '#f59e0b',
         error: '#ef4444',
         info: '#3b82f6',
       },
-      // Typography
+      // Oatly-inspired Typography
       fontFamily: {
+        // Ultra-bold condensed headlines
+        headline: ['Impact', 'Arial Black', 'sans-serif-black', 'sans-serif'],
+        // Monospace body text (typewriter aesthetic)
+        body: ['Courier New', 'Courier', 'monospace'],
+        // Quirky handwritten for accents
+        handwritten: ['Caveat', 'Comic Sans MS', 'cursive'],
+        // Keep defaults for backwards compatibility
         sans: ['Inter', 'system-ui', 'sans-serif'],
         serif: ['Playfair Display', 'Georgia', 'serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        mono: ['Courier New', 'monospace'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1rem' }],
@@ -75,6 +76,21 @@ const config: Config = {
         '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
         '5xl': ['3rem', { lineHeight: '1' }],
         '6xl': ['3.75rem', { lineHeight: '1' }],
+        '7xl': ['4.5rem', { lineHeight: '1' }],
+        '8xl': ['6rem', { lineHeight: '1' }],
+        '9xl': ['8rem', { lineHeight: '1' }],
+      },
+      fontWeight: {
+        hairline: '100',
+        thin: '200',
+        light: '300',
+        normal: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+        extrabold: '800',
+        black: '900',
+        'ultra-black': '950',
       },
       // Spacing
       spacing: {
@@ -95,12 +111,26 @@ const config: Config = {
         '3xl': '1.5rem',
         'full': '9999px',
       },
-      // Box shadows
+      // Box shadows - Oatly style (bold, strong shadows)
       boxShadow: {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
         'medium': '0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
         'strong': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
         'inner-soft': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+        // Bold Oatly-style shadows
+        'oatly-bold': '8px 8px 0px rgba(0, 0, 0, 1)',
+        'oatly-card': '6px 6px 0px rgba(0, 0, 0, 1)',
+        'oatly-button': '4px 4px 0px rgba(0, 0, 0, 1)',
+      },
+      // Border styles - sketch/hand-drawn feel
+      borderWidth: {
+        DEFAULT: '1px',
+        '0': '0px',
+        '2': '2px',
+        '3': '3px',
+        '4': '4px',
+        '6': '6px',
+        '8': '8px',
       },
       // Animation
       animation: {
