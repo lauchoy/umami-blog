@@ -8,6 +8,7 @@ import RecipeNutrition from '@/components/recipes/RecipeNutrition'
 import RecipeReviews from '@/components/recipes/RecipeReviews'
 import RecipeRelated from '@/components/recipes/RecipeRelated'
 import CookingModeToggle from '@/components/recipes/CookingModeToggle'
+import SocialShare from '@/components/recipes/SocialShare'
 import { Skeleton } from '@/components/ui/skeleton'
 import { sanityClient } from '@/lib/sanity/config'
 import { recipeBySlugQuery } from '@/lib/sanity/queries'
@@ -136,6 +137,9 @@ export default async function RecipePage({
         <Suspense fallback={<RecipeHeaderSkeleton />}>
           <RecipeHeader recipe={recipe} />
         </Suspense>
+
+        {/* Social Share */}
+        <SocialShare recipe={recipe} />
 
         {/* Cooking Mode Toggle */}
         <div className="mb-8">

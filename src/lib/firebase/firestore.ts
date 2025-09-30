@@ -283,6 +283,38 @@ export async function createUserProfile(userId: string, profile: UserProfile): P
   }
 }
 
+// Enhanced Recipe Reviews
+export async function addRecipeReview(reviewData: Omit<Review, 'id'>): Promise<string> {
+  try {
+    const reviewsRef = collection(db, 'reviews')
+    const docRef = await addDoc(reviewsRef, reviewData)
+    return docRef.id
+  } catch (error) {
+    throw new Error(`Failed to add recipe review: ${error instanceof Error ? error.message : 'Unknown error'}`)
+  }
+}
+
+export async function updateRecipeReview(reviewId: string, updates: Partial<Review>): Promise<void> {
+  try {
+    const reviewRef = doc(db, 'reviews', reviewId)
+    await updateDoc(reviewRef, {
+      ...updates,
+      updatedAt: new Date(),
+    })
+  } catch (error) {
+    throw new Error(`Failed to update recipe review: ${error instanceof Error ? error.message : 'Unknown error'}`)
+  }
+}
+
+export async function deleteRecipeReview(reviewId: string): Promise<void> {
+  try {
+    const reviewRef = doc(db, 'reviews', reviewId)
+    await deleteDoc(reviewRef)
+  } catch (error) {
+    throw new Error(`Failed to delete recipe review: ${error instanceof Error ? error.message : 'Unknown error'}`)
+  }
+}
+
 // Generic helpers
 export async function getDocument<T>(collectionName: string, docId: string): Promise<T | null> {
   try {

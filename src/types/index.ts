@@ -156,15 +156,30 @@ export interface ShoppingItem {
   estimatedPrice?: number
 }
 
+export interface ReviewReply {
+  id: string
+  userId: string
+  userName: string
+  userAvatar?: string
+  comment: string
+  createdAt: Date
+}
+
 export interface Review {
   id: string
   userId: string
+  userName: string
+  userAvatar?: string
   recipeId: string
   rating: number // 1-5
-  comment?: string
+  title: string
+  comment: string
   images?: RecipeImage[]
   helpful: number
+  notHelpful: number
+  replies: ReviewReply[]
   createdAt: Date
+  updatedAt: Date
 }
 
 export interface CookingSession {
@@ -176,6 +191,10 @@ export interface CookingSession {
   completedAt?: Date
   notes?: string
   modifications?: string[]
+  isPaused?: boolean
+  stepStartTime?: Date
+  isActive?: boolean
+  totalTime?: number
 }
 
 // UI Component Props
