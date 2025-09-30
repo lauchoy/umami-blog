@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge'
 import { ClockIcon, UsersIcon } from '@heroicons/react/24/outline'
 import { StarIcon as StarSolidIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
+import Image from 'next/image'
 import { sanityClient } from '@/lib/sanity/config'
 import { searchRecipesQuery } from '@/lib/sanity/queries'
 import { groq } from 'next-sanity'
@@ -122,10 +123,12 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow group">
       <div className="aspect-video bg-gray-200 relative overflow-hidden">
-        <img
+        <Image
           src={recipe.mainImage}
           alt={recipe.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover group-hover:scale-105 transition-transform"
         />
         <div className="absolute top-3 right-3">
           <Badge variant="secondary" className="capitalize">
@@ -183,11 +186,15 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
 
         {/* Author */}
         <div className="flex items-center gap-2 mb-4">
-          <img
-            src={recipe.author.image || '/default-avatar.png'}
-            alt={recipe.author.name}
-            className="w-6 h-6 rounded-full object-cover"
-          />
+          <div className="relative w-6 h-6 rounded-full overflow-hidden">
+            <Image
+              src={recipe.author.image || '/default-avatar.png'}
+              alt={recipe.author.name}
+              fill
+              sizes="24px"
+              className="object-cover"
+            />
+          </div>
           <span className="text-sm text-gray-600">{recipe.author.name}</span>
         </div>
 
